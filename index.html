@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>汉字转拼音</title>
+    <style>
+        textarea{
+            font-size: 16px;
+            padding: 10px;
+            color: #333;
+        }
+        p{
+            padding: 10px;
+            font-size: 18px;
+            color: #666;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<textarea name="" id="t" cols="30" rows="10">输入一行汉字，还你一串拼音！
+</textarea>
+
+<p>
+    拼音:
+    <span  id="log"></span>
+</p>
+<p>
+    声母的首字母:
+    <span  id="cap"></span>
+</p>
+
+
+
+<script src="pinyin.js"></script>
+<script>
+    var t = document.querySelector('#t'),
+            log = document.querySelector('#log'),
+            cap = document.querySelector('#cap');
+
+    t.oninput = function(){
+        showPinyin(this.value);
+    };
+
+    showPinyin(t.value);
+    function showPinyin(value){
+        var pinyin = toPY(value);
+        log.innerHTML = pinyin.pinyin;
+        cap.innerHTML = pinyin.acronym;
+    }
+
+</script>
+</body>
+</html>
